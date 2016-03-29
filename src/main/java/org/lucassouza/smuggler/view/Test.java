@@ -1,12 +1,9 @@
 package org.lucassouza.smuggler.view;
 
-import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import org.lucassouza.smuggler.model.Bet;
 import org.lucassouza.smuggler.model.CSGODouble;
 import org.lucassouza.smuggler.model.Roulette;
-import org.lucassouza.smuggler.type.Color;
 import static org.lucassouza.smuggler.type.Color.BLACK;
 import static org.lucassouza.smuggler.type.Color.RED;
 
@@ -18,8 +15,10 @@ public class Test {
   private static Roulette roulette;
 
   public static void main(String[] args) {
-    //CSGODouble csGoDouble = new CSGODouble();
-    roulette = new Roulette(500, BLACK, RED);
+    CSGODouble csGoDouble = new CSGODouble();
+
+    csGoDouble.startBetting();
+    /*roulette = new Roulette(500, BLACK, RED);
     HashMap<Color, Bet> bet = roulette.getBet();
 
     System.out.println("BLACK: " + bet.get(BLACK).getNextBet() + " / RED: " + bet.get(RED).getNextBet());
@@ -28,7 +27,7 @@ public class Test {
 
     for (int i = 0; i < 2880; i++) {
       execute();
-    }
+    }*/
   }
   
   private static void execute() {

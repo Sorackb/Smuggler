@@ -24,7 +24,7 @@
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
-          <outputDirectory>C:\${project.name}</outputDirectory>
+          <outputDirectory>C:\lucassouza.org\${project.name}</outputDirectory>
           <!--
            Podemos usar o ${project.file.parentFile.parentFile.name} ou
            ${project.version} para pegar a versão da pasta
@@ -48,6 +48,11 @@
   </build>
   <name>Smuggler</name>
   <dependencies>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-support</artifactId>
+      <version>2.53.0</version>
+    </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>

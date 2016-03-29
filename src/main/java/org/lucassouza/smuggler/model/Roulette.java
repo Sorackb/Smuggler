@@ -10,7 +10,7 @@ import org.lucassouza.smuggler.type.Color;
  */
 public class Roulette {
 
-  private static final Double MAX_TRY = 8.0; // Número máximo de tentativas
+  private static final Double MAX_TRY = 11.0; // Número máximo de tentativas
   private final HashMap<Color, Bet> bet;
   private Integer initialBet;
   private Integer balance;
@@ -26,6 +26,16 @@ public class Roulette {
       newBet.setInitialBet(this.initialBet);
       newBet.setNextBet(this.initialBet);
       this.bet.put(color, newBet);
+    }
+  }
+
+  public void roll(Integer number) {
+    HashMap<Color, Bet> bet;
+
+    for (Color color : Color.values()) {
+      if (number >= color.getStart() && number <= color.getEnd()) {
+        this.roll(color);
+      }
     }
   }
 
@@ -52,12 +62,12 @@ public class Roulette {
       }
 
       summary = summary + key.name() + ": " + actualBet.getNextBet();
-      
+
       if (actualBet.getNextBet() > this.balance) {
         summary = summary + " <= LEAK";
       }
     }
-    
+
     System.out.println(summary);
     System.out.println("Balance: " + this.balance);
     System.out.println("======================");
@@ -75,14 +85,14 @@ public class Roulette {
   public Integer getBalance() {
     return this.balance;
   }
-  
+
   private void recalculateInitialBet() {
     Integer newInitialBet;
     Double root;
 
     root = this.balance / Math.pow(2, MAX_TRY);
     newInitialBet = root.intValue();
-    
+
     if (newInitialBet == 0) {
       newInitialBet = 1;
     }
