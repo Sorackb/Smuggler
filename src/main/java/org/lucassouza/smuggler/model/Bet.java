@@ -5,22 +5,31 @@ package org.lucassouza.smuggler.model;
  * @author Lucas Souza [sorackb@gmail.com]
  */
 public class Bet {
-  private Integer initialBet;
-  private Integer nextBet;
 
-  public Integer getInitialBet() {
-    return initialBet;
+  private Integer bind;
+  private Integer total;
+
+  public Bet() {
+    this.bind = 0;
+    this.total = 0;
   }
 
-  public void setInitialBet(Integer initialBet) {
-    this.initialBet = initialBet;
+  public Integer getBind() {
+    return bind;
   }
 
-  public Integer getNextBet() {
-    return nextBet;
+  public void setBind(Integer bind) {
+    // Atualiza o total. Caso a aposta tenha sido aumentada incrementa o total. Caso a aposta seja diminuída significa que a aposta foi zerada
+    if (bind > this.bind) {
+      this.total = this.total + bind;
+    } else {
+      this.total = bind;
+    }
+    
+    this.bind = bind;
   }
 
-  public void setNextBet(Integer nextBet) {
-    this.nextBet = nextBet;
+  public Integer getTotal() {
+    return total;
   }
 }

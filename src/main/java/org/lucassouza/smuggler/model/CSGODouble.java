@@ -48,7 +48,7 @@ public class CSGODouble {
     this.waitBetPhase();
 
     for (Color color : colors) {
-      this.betColor(color, bet.get(color).getNextBet());
+      this.betColor(color, bet.get(color).getBind());
     }
 
     this.checkResult();
@@ -68,7 +68,7 @@ public class CSGODouble {
     // TODO Habilitar quando houver valor
     //this.waitTextToBePresent(Selector.CSS_SELECTOR, "div#" + panelId + " div.mytotal", amount.toString(), 5);
   }
-  
+
   private void checkResult() {
     Integer result;
 
