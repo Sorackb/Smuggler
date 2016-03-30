@@ -6,7 +6,6 @@ import org.lucassouza.smuggler.type.Color;
 import org.lucassouza.smuggler.type.Selector;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,7 +25,7 @@ public class CSGODouble {
     this.driver = new FirefoxDriver();
   }
 
-  public void startBetting() {
+  public void startBetting() throws Exception {
     Integer balance;
 
     this.driver.get("http://www.csgodouble.com/index.php");
@@ -39,7 +38,7 @@ public class CSGODouble {
     this.betNext();
   }
 
-  private void betNext() {
+  private void betNext() throws Exception {
     HashMap<Color, Bet> bet;
     Set<Color> colors;
 
@@ -69,7 +68,7 @@ public class CSGODouble {
     //this.waitTextToBePresent(Selector.CSS_SELECTOR, "div#" + panelId + " div.mytotal", amount.toString(), 5);
   }
 
-  private void checkResult() {
+  private void checkResult() throws Exception {
     Integer result;
 
     this.waitTextToBePresent(Selector.ID, "banner", "CSGODouble rolled ", 90);

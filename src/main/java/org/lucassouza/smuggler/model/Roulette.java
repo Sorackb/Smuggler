@@ -11,7 +11,8 @@ import org.lucassouza.smuggler.type.Color;
  */
 public class Roulette {
 
-  private static final Double MAX_TRY = 11.0; // Número máximo de tentativas
+  private static final Double MAX_TRY = 19.0; // Número máximo de tentativas
+  private static final Integer FIXED_BIND = 0; // Se estiver zero vai ser calculado, senão apenas utiliza um valor fixo
   private final HashMap<Color, Bet> bet;
   private final Boolean applyGrandMartingale;
   private Integer sequence;
@@ -33,13 +34,13 @@ public class Roulette {
       Bet newBet = new Bet();
 
       newBet.setBind(this.initialBet);
+      this.provisionalBalance = this.provisionalBalance - this.initialBet;
+      this.recalculateInitialBet();
       this.bet.put(color, newBet);
     }
   }
 
-  public void roll(Integer number) {
-    HashMap<Color, Bet> bet;
-
+  public void roll(Integer number) throws Exception {
     for (Color color : Color.values()) {
       if (number >= color.getStart() && number <= color.getEnd()) {
         this.roll(color);
@@ -47,7 +48,7 @@ public class Roulette {
     }
   }
 
-  public void roll(Color color) {
+  public void roll(Color color) throws Exception {
     Integer difference = 0;
     Boolean dangerous = false;
     Boolean stopped = false;
@@ -76,6 +77,7 @@ public class Roulette {
         //} else if (this.provisionalBalance - nextBind < nextBind) { // Evita valores negativos parando a aposta
         stopped = true;
         actualBet.setBind(this.initialBet);
+        throw new Exception("Erro");
       } else {
         this.setProvisionalBalance(this.provisionalBalance - nextBind);
         actualBet.setBind(nextBind);
@@ -123,13 +125,17 @@ public class Roulette {
     Integer newInitialBet;
     Double root;
 
-    root = this.provisionalBalance / Math.pow(2, MAX_TRY);
-    newInitialBet = root.intValue();
+    if (FIXED_BIND > 0) {
+      this.initialBet = FIXED_BIND;
+    } else {
+      root = this.provisionalBalance / Math.pow(2, MAX_TRY);
+      newInitialBet = root.intValue();
 
-    if (newInitialBet == 0) {
-      newInitialBet = 1;
+      if (newInitialBet == 0) {
+        newInitialBet = 1;
+      }
+
+      this.initialBet = newInitialBet;
     }
-
-    this.initialBet = newInitialBet;
   }
 }
