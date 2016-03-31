@@ -20,7 +20,8 @@ public class History {
   private final HashMap<String, String> cookies;
 
   public History() {
-    this.roulette = new Roulette(508000, false, BLACK, RED);
+    //this.roulette = new Roulette(508000, false, BLACK, RED);
+    this.roulette = new Roulette(3000000, 19.00, false, BLACK, RED);
     this.cookies = new HashMap<>();
 
     this.cookies.put("settings_confirm", "false");
@@ -28,8 +29,8 @@ public class History {
     this.cookies.put("settings_dongers", "false");
     this.cookies.put("settings_hideme", "false");
     this.cookies.put("PHPSESSID", "a6eutb3stk9jh5k8fi5pnhpbm4");
-    this.cookies.put("visid_incap_655666", "XAYUy4uLSL+5W21jx9LneBkj+VYAAAAAQUIPAAAAAAAPKKvmWOsTr2v6Jy/tfI9s");
-    this.cookies.put("incap_ses_223_655666", "gMSHT0hcdhAHzQ1+ZkEYA7cx/FYAAAAAaUskOD43X78ESpuV7+zshQ==");
+    this.cookies.put("visid_incap_655666", "XAYUy4uLSL+5W21jx9LneBkj+VYAAAAAQkIPAAAAAACA1CdzAbsn9R80EjKrc2wsMbpmExBUq8AB");
+    this.cookies.put("incap_ses_222_655666", "ZN69XznrZUjBbVmd87QUA8hV/VYAAAAAsIXUCRe9V8jYVtA0eeMSrw==");
   }
 
   public LinkedHashSet<String> list() throws IOException {

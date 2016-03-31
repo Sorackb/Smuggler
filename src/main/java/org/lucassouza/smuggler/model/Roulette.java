@@ -11,22 +11,23 @@ import org.lucassouza.smuggler.type.Color;
  */
 public class Roulette {
 
-  private static final Double MAX_TRY = 19.0; // Número máximo de tentativas
   private static final Integer FIXED_BIND = 0; // Se estiver zero vai ser calculado, senão apenas utiliza um valor fixo
   private final HashMap<Color, Bet> bet;
   private final Boolean applyGrandMartingale;
+  private final Double maxTry; // Número máximo de tentativas
   private Integer sequence;
   private Integer initialBet;
   private Integer provisionalBalance;
 
-  public Roulette(Integer initialBalance, Color... colors) {
-    this(initialBalance, false, colors);
+  public Roulette(Integer initialBalance, Double maxTry, Color... colors) {
+    this(initialBalance, maxTry, false, colors);
   }
 
-  public Roulette(Integer initialBalance, Boolean applyGrandMartingale, Color... colors) {
+  public Roulette(Integer initialBalance, Double maxTry, Boolean applyGrandMartingale, Color... colors) {
     this.bet = new HashMap<>();
     this.sequence = 0;
     this.provisionalBalance = initialBalance;
+    this.maxTry = maxTry;
     this.applyGrandMartingale = applyGrandMartingale;
     this.recalculateInitialBet();
 
@@ -128,7 +129,7 @@ public class Roulette {
     if (FIXED_BIND > 0) {
       this.initialBet = FIXED_BIND;
     } else {
-      root = this.provisionalBalance / Math.pow(2, MAX_TRY);
+      root = this.provisionalBalance / Math.pow(2, this.maxTry + 2.0);
       newInitialBet = root.intValue();
 
       if (newInitialBet == 0) {

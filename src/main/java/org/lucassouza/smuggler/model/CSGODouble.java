@@ -34,7 +34,7 @@ public class CSGODouble {
     // TODO Colocar a leitura real de valor
     balance = 500;
     //balance = Integer.parseInt(this.getText(Selector.ID, "balance"));
-    this.roulette = new Roulette(balance, Color.RED, Color.BLACK);
+    this.roulette = new Roulette(balance, 19.00, false, Color.RED, Color.BLACK);
     this.betNext();
   }
 
