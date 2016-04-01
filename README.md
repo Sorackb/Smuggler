@@ -2,4 +2,4 @@
 
 **CONCLUSION: Profit with Grand Martingale is not possible;**
 
-Bot for the win in http://www.csgodouble.com/index.php
+Bot using [Selenium](http://www.seleniumhq.org/) for the win in [CSGODouble.com](http://www.csgodouble.com/index.php).
